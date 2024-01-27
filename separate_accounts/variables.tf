@@ -1,0 +1,2 @@
+variable "secondrole" {}
+variable "thirdrole" {}
