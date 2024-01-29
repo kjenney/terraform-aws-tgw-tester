@@ -48,4 +48,6 @@ module "security_group_instance_vpc2" {
   egress_rules = ["all-all"]
 
   tags = local.tags
+
+  depends_on = [aws_ram_resource_association.vpc2_subnets]
 }

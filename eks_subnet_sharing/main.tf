@@ -138,13 +138,14 @@ resource "aws_ram_principal_association" "thirdaccount" {
 }
 
 resource "aws_ram_resource_association" "vpc1_subnets" {
-  for_each            = toset(module.vpc1.private_subnet_arns)
-  resource_arn        = each.key
+  count               = length(module.vpc1.private_subnet_arns)
+  resource_arn        = module.vpc1.private_subnet_arns[count.index]
   resource_share_arn  = aws_ram_resource_share.secondaccount.arn
 }
 
 resource "aws_ram_resource_association" "vpc2_subnets" {
-  for_each            = toset(module.vpc2.private_subnet_arns)
-  resource_arn        = each.key
+  count               = length(module.vpc2.private_subnet_arns)
+  resource_arn        = module.vpc2.private_subnet_arns[count.index]
   resource_share_arn  = aws_ram_resource_share.thirdaccount.arn
 }
+
