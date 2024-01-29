@@ -32,7 +32,7 @@ terraform apply \
 
 ## Test
 
-Login to the EKS cluster using `aws eks update-kubeconfig --name testertestypants`
+Login to the EKS cluster in the 3rd account using `aws eks update-kubeconfig --name testertestypants`. Ensure that you are assuming `thirdrole` to access it.
 
 Create service and Node Port:
 
