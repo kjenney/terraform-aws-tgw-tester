@@ -32,11 +32,22 @@ terraform apply \
 
 ## Test
 
-Note the Terraform output from above - specifically `eks_service_address`.
+Login to the EKS cluster using `aws eks update-kubeconfig --name testertestypants`
+
+Create service and Node Port:
+
+```
+kubectl apply -f nginx-deployment.yaml
+kubectl create -f nodeport.yaml
+```
+
+Get NodePort to access the service: `kubectl get svc nginx-service-nodeport -oyaml | grep nodePort`
+
+Get the IP addresses of the EKS nodes: `kubectl get node -oyaml | grep -B1 InternalIP`
 
 Login to the EC2 instance in the 2nd account with Session Manager. 
 
-Run `curl $eks_service_address` - where `eks_service_address` is the value of the Terraform output from above.
+`curl $IP $PORT` - where `IP` is an IP address from an EKS node and `PORT` is the Node Port.
 
 ## Cleanup
 

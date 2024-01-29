@@ -148,4 +148,3 @@ resource "aws_ram_resource_association" "vpc2_subnets" {
   resource_arn        = module.vpc2.private_subnet_arns[count.index]
   resource_share_arn  = aws_ram_resource_share.thirdaccount.arn
 }
-

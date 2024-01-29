@@ -49,4 +49,6 @@ module "security_group_instance" {
   egress_rules = ["all-all"]
 
   tags = local.tags
+
+  depends_on = [aws_ram_resource_association.vpc1_subnets]
 }

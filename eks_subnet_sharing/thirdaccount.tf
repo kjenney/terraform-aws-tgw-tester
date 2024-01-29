@@ -14,7 +14,21 @@ module "eks" {
   cluster_endpoint_public_access_cidrs = [var.eks_access_ip]
   subnet_ids      = module.vpc2.private_subnets
   vpc_id          = module.vpc2.vpc_id
+
+  node_security_group_additional_rules = {
+    ingress_all = {
+      description      = "Node all ingress"
+      protocol         = "-1"
+      from_port        = 0
+      to_port          = 0
+      type             = "ingress"
+      cidr_blocks      = [module.vpc1.vpc_cidr_block]
+    }
+  }
+
   tags            = local.tags
+
+  depends_on      = [aws_ram_resource_association.vpc2_subnets]
 }
 
 module "eks_managed_node_group" {
