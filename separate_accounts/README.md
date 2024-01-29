@@ -1,4 +1,4 @@
-# tgw-tester
+# separate_accounts
 
 Provision a Transit Gatweay wth 2 VPC's, each with an EC2 instance to test connectivity. The VPC's are provisioned in a single account but shared to 2 separate accounts. The EC2 instances are in the separate accounts, but connectivity is still over the Transit Gateway.
 
@@ -27,11 +27,11 @@ terraform apply \
 
 ## Test
 
-Note the Terraform output from above - specifically `vp2_intance_ip`.
+Note the Terraform output from above - specifically `vpc2_intance_ip`.
 
 Login to the instance in the second account with Session Manager. 
 
-Run `ssh $vp2_intance_ip` - where `vp2_intance_ip` is the value of the Terraform output from above.
+Run `ssh $vp2_intance_ip` - where `vpc2_intance_ip` is the value of the Terraform output from above.
 
 ## Cleanup
 
