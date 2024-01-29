@@ -1,4 +1,4 @@
-# tgw-tester
+# terraform-aws-tgw-tester 
 
 Some examples of provisioning a Transit Gateway with Terraform and testing out connectivity across VPC's
 
